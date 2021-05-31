@@ -2,6 +2,6 @@
     <h3>{{type}}</h3>
     <hr/>
     <div class="card-body"   *ngFor="let displayedStatistic of displayedStatistics">
-        <span class="subject">{{displayedStatistic.subject}}</span> <span class="count">{{displayedStatistic.count}} </span>      
+        <span class="subject"  (click)="applyFilter(displayedStatistic.subject)">{{displayedStatistic.subject}}</span> <span class="count">{{displayedStatistic.count}} </span>      
     </div>
 </div>

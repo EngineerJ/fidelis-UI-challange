@@ -11,8 +11,11 @@ export class AppComponent {
   boxTypeClientIP:string;
   boxTypeProtocol:string;
   boxTypeClientCountry:string;
+  originalAlerts:any;
   alerts:any;
   totalAlerts:number;
+  filters:string[];
+  changeDetected:boolean;
 
   constructor(){
     this.title = '';
@@ -20,8 +23,11 @@ export class AppComponent {
     this.boxTypeClientIP= '';
     this.boxTypeProtocol= '';
     this.boxTypeClientCountry= '';
-    this.alerts =  [];
+    this.originalAlerts=[];
+    this.alerts = [];
     this.totalAlerts=0;
+    this.filters= [];
+    this.changeDetected=false;
    }
 
    ngOnInit(){
@@ -30,7 +36,7 @@ export class AppComponent {
     this.boxTypeClientIP= 'ClientIP';
     this.boxTypeProtocol= 'Protocol';
     this.boxTypeClientCountry= 'ClientCountry';
-    this.alerts =  [
+    this.originalAlerts =  [
       {
         "AlertId": 24859,
         "AlertTime": "2018-02-26 07:59:22",
@@ -932,6 +938,29 @@ export class AppComponent {
         "ClientCountry": "United States"
       }
      ];
+     this.alerts=this.originalAlerts;
      this.totalAlerts=this.alerts.length;
   }
+
+  savefilters(filters:string[]){
+    this.filters = this.getUniqueFilters(this.filters,filters);
+    this.filters.forEach(element => {
+      this.alerts=this.originalAlerts.filter((alert:any) => Object.values(alert).indexOf(element) > -1)
+    });
+    console.log(this.alerts.length);
+    console.log(this.alerts);
+    this.totalAlerts=this.alerts.length;
+  }
+
+  getUniqueFilters(existingFilters:string[],newFilters:string[]){
+    return Array.from(new Set(Object.assign([],existingFilters.concat(newFilters))));
+  }
+
+  resetFilters(filters:string[]){
+    this.filters=[];
+    console.log(this.filters);
+    this.alerts=this.originalAlerts;
+    this.totalAlerts=this.alerts.length;
+  }
+
 }

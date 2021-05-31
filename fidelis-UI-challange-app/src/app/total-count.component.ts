@@ -3,11 +3,14 @@ import { Component, Input } from '@angular/core'
 @Component({
   selector: 'total-count',
   template: `
-    <span class='card'>Total Alert Counts: {{totalAlerts}}<span>
+    <div class='card'>
+        <span>Total Alert Counts: {{totalAlerts}}</span>
+    </div>
   `,
   styles: [`
     .card { 
-        border: 2px;
+        padding: 5px;
+        width: 405px;
         background-color: grey;
         color:white;
     }

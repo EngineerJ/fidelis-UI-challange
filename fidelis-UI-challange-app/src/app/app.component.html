@@ -1,5 +1,6 @@
 <total-count [totalAlerts]="totalAlerts"></total-count>
-<statistical-box [alerts]="alerts" [type]="boxTypeSeverity"></statistical-box>
-<statistical-box [alerts]="alerts" [type]="boxTypeClientIP"></statistical-box>
-<statistical-box [alerts]="alerts" [type]="boxTypeProtocol"></statistical-box>
-<statistical-box [alerts]="alerts" [type]="boxTypeClientCountry"></statistical-box>
+<filter (resetFilters)="resetFilters($event)" [filters]="filters"></filter>
+<statistical-box (savefilters)="savefilters($event)" [filters]="filters" [alerts]="alerts" [type]="boxTypeSeverity"></statistical-box>
+<statistical-box (savefilters)="savefilters($event)" [filters]="filters" [alerts]="alerts" [type]="boxTypeClientIP"></statistical-box>
+<statistical-box (savefilters)="savefilters($event)" [filters]="filters" [alerts]="alerts" [type]="boxTypeProtocol"></statistical-box>
+<statistical-box (savefilters)="savefilters($event)" [filters]="filters" [alerts]="alerts" [type]="boxTypeClientCountry"></statistical-box>

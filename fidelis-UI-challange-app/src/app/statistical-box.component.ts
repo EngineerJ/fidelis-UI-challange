@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
   selector: 'statistical-box',
@@ -17,15 +17,20 @@ import { Component, Input } from '@angular/core'
 export class StatisticalBoxComponent { 
     @Input() type:string;
     @Input() alerts:any;
-    subject:string[]=[];
+    @Output() savefilters = new EventEmitter();
+    @Input() filters:string[];
+    subject:string[];
     displayedStatistics:{subject:string, count:number}[]=[];
 
     constructor(){
         this.type='';
         this.alerts=[];
+        this.subject=[];
+        this.filters=[];
     }
 
     ngOnInit(){
+        this.filters=this.filters;
         this.returnStatistics();
     }
   
@@ -44,5 +49,10 @@ export class StatisticalBoxComponent {
             }
             break;
         }
+    }
+
+    applyFilter(subject:string){
+        this.filters.push(subject);
+        this.savefilters.emit(this.filters);
     }
 }
