@@ -2,10 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { StatisticalBoxComponent } from "./statistical-box.component";
+import { TotalCountComponent } from "./total-count.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StatisticalBoxComponent,
+    TotalCountComponent
   ],
   imports: [
     BrowserModule
